@@ -1,8 +1,12 @@
 import express from "express"
-import { registerUser } from "../controllers/auth-controller.js"
+import { changePassword, changeUserRole, deleteUser } from "../controllers/user-controller.js"
+import { verifyAdmin, verifyAuthorization } from "../middleware/auth-middleware.js"
+import { isAuthorized } from "../middleware/is-authorized.js"
 import { checkSchema } from "express-validator"
-import { createUserSchemaValidators } from "../utils/createUserSchemaValidator.js"
+import { changePasswordValidators } from "../utils/passwordChangeValidationSchema.js"
 
 export const userRouter = express.Router()
 
-userRouter.post("/register-user", checkSchema(createUserSchemaValidators), registerUser)
+userRouter.delete("/delete-user/:id", [verifyAuthorization, isAuthorized], deleteUser)
+userRouter.patch("/change-role/:id", verifyAdmin, changeUserRole)
+userRouter.post("/change-password", checkSchema(changePasswordValidators), verifyAuthorization, changePassword)
