@@ -6,5 +6,5 @@ import { loginUserSchemaValidators } from "../utils/loginUserValidators.js"
 
 export const authRouter = express.Router()
 
-authRouter.post("/register-user", checkSchema(createUserSchemaValidators), registerUser)
+authRouter.post("/register", checkSchema(createUserSchemaValidators), registerUser)
 authRouter.post("/login", checkSchema(loginUserSchemaValidators), login)

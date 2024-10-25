@@ -5,6 +5,7 @@ const bookSchema = new mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     category: {type: mongoose.Schema.Types.ObjectId, ref: "category"},
     publishedDate: {type: Date, default: Date.now()},
+    isPublished: {type: Boolean, default: false},
     ISBN: {type: String, required: true},
     summary: {type: String, required: true},
     price: {type: Number, required: true},

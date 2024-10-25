@@ -3,6 +3,12 @@ import { comparePassword } from "../helpers/compare-password.js";
 import { hashPassword } from "../helpers/hash-password.js";
 import { User } from "../models/user.js";
 
+
+export const getAllUsers = async (req, res) => {
+  const users = await User.find()
+  res.status(200).send(users)
+}
+
 export const updateUser = async (req, res) => {
   const userId = req.user.id;
 
@@ -84,7 +90,6 @@ export const changePassword = async (req, res) => {
 
 // change user roles
 // admins only can change user roles
-
 export const changeUserRole = async (req, res) => {
   const { role } = req.body;
   const userId = req.params.id;
