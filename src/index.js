@@ -6,6 +6,7 @@ import { authRouter } from "./routes/auth-routes.js"
 import { dbConnect } from "./config/db-connection.js"
 import { userRouter } from "./routes/user-routes.js"
 import { categoryRouter } from "./routes/category-routes.js"
+import { bookRouter } from "./routes/book-routes.js"
 
 
 
@@ -26,6 +27,7 @@ dbConnect()
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/category", categoryRouter)
+app.use("/api/v1/books", bookRouter)
 
 
 const PORT = process.env.PORT || 3009
